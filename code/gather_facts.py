@@ -247,8 +247,9 @@ def filter_resource(facts):
 # iac_path = "IAC/tfplan.json"
 # iac_path = sys.argv[1]
 # print(os.environ.get("GITHUB_WORKSPACE"))
-iac_path = os.environ.get("IAC_PATH") + "/" + "tfplan.json"
-# print(iac_path)
+# print(os.environ.get("IAC_PATH") + "/" + "tfplan.json")
+iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH") + "/" + "tfplan.json")
+print(iac_path)
 facts, region = gather_facts(iac_path)
 client = boto3.client("pricing", region_name="us-east-1")
 # print(facts)
