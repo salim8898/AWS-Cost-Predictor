@@ -2,6 +2,7 @@ import json
 import boto3
 from tabulate import tabulate
 import sys
+import os
 
 def gather_facts(iac_path):
     with open(iac_path, "r") as file:
