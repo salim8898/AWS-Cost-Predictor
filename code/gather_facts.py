@@ -249,19 +249,15 @@ print(iac_path)
 
 ###
 with open(iac_path, 'r') as file:
-    file_content = file.read()
-    # print(f"File content: {file_content}")
+    lines = file.readlines()
+lines= lines[1:]
+
+with open(iac_path, 'w') as file:
+    file.writelines(lines)
     
-    # json_data = json.loads(file_content)
-    # print(json_data) 
-
-with open('output_file.json', 'w') as output_file:
-    output_file.write(file_content)
-
-print("reading local file")
-with open('output_file.json', 'r') as file:
-    output = file.read()
-    print(output)
+with open(iac_path, 'r') as file:
+    file_content = file.read()
+print(file_content)
 ###
 # facts, region = gather_facts(iac_path)
 # client = boto3.client("pricing", region_name="us-east-1")
