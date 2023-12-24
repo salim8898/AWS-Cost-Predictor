@@ -43,7 +43,7 @@ runs:
       run: |
         echo '{{ steps.tfplanOutputJson.outputs.stdout }' >> tfplan.json
         ls -al
-        cat ${{ inputs.iac_path }}/tfplan.json
+        cat tfplan.json
       working-directory: ${{ inputs.iac_path }}
       shell: bash
       
