@@ -252,6 +252,6 @@ client = boto3.client("pricing", region_name="us-east-1")
 # print(facts)
 tabulate_cost = filter_resource(facts)
 # print(tabulate_cost)
-headers = ["Servive Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
+headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
 alignments = ["left", "left", "right", "right"]
 print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
