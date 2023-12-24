@@ -24,7 +24,7 @@ runs:
       uses: hashicorp/setup-terraform@v1
       
     - name: Generate tfplan
-      run: terraform plan -out=tfplan.binary ${{ inputs.iac_path }}
+      run: terraform plan -out=tfplan.binary -chdir=${{ inputs.iac_path }}
       shell: bash
 
     - name: Convert tfplan to JSON
