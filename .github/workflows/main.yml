@@ -30,7 +30,8 @@ jobs:
         
       - name: debug CLI path
         run: |
-          ls -al "${{ TERRAFORM_CLI_PATH }}"
+          echo $TERRAFORM_CLI_PATH
+          ls -al $TERRAFORM_CLI_PATH
           env
         shell: bash
         continue-on-error: true
