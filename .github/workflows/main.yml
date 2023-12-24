@@ -16,7 +16,7 @@ jobs:
         # or use a released Github Action
         # uses: repo url
         with:
-          iac_path: IAC/tfplan.json
+          iac_path: IAC
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
