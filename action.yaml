@@ -36,15 +36,7 @@ runs:
       shell: bash
       
     - name: Convert tfplan to JSON
-      id: tfplanOutputJson
       run: terraform show -json tfplan.binary > tfplan.json
-      working-directory: ${{ inputs.iac_path }}
-      shell: bash
-      
-    - name: Save tfplan JSON file
-      run: |
-        ls -al
-        cat tfplan.json
       working-directory: ${{ inputs.iac_path }}
       shell: bash
       
