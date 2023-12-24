@@ -66,8 +66,8 @@ jobs:
       - name: Predict cost
         uses: salim8898/AWS-Cost-Predictor@v1.0.0
         with:
-          iac_path: IAC.    # path where the Terraform code is reside at root of your git repository
-        env:    # AWS key need to be added to your Git repo secret to authenticate to AWS Cost API
+          iac_path: IAC    # path of IAC folder in your repo
+        env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         # continue-on-error: true
