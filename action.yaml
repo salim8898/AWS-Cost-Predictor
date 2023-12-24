@@ -1,6 +1,6 @@
 # action.yaml
 name: 'AWS-Cost-Predictor'
-description: 'A GitHub Action that estimates your AWS deployments cost by analyzing your Infrastructure as Code (IAC) setup. Get a predictive cost report before deploying to your AWS environment'
+description: 'A GitHub Action that estimates your AWS deployment cost by analyzing your Infrastructure as Code (IAC) setup. Get a predictive cost report before deploying to your AWS env'
 
 inputs:
   iac_path:
