@@ -251,7 +251,7 @@ terraform_command = ['terraform', 'show', '-json', 'tfplan.binary']
 
 
 try:
-    result = subprocess.run(terraform_command, cwd=iac_folder, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+    result = subprocess.run(terraform_command, cwd=iac_path, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
     output = result.stdout
     with open(iac_path + "/" + "tfplan.json", "w") as file:
         file.write(output)
