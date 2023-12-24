@@ -246,8 +246,9 @@ def filter_resource(facts):
 
 # iac_path = "IAC/tfplan.json"
 # iac_path = sys.argv[1]
-iac_path = os.environ.get("IAC_PATH")
-facts, region = gather_facts(iac_path + "/tfplan.json")
+iac_path = os.environ.get("IAC_PATH") + "/" + "/tfplan.json"
+print(iac_path)
+facts, region = gather_facts(iac_path)
 client = boto3.client("pricing", region_name="us-east-1")
 # print(facts)
 tabulate_cost = filter_resource(facts)
