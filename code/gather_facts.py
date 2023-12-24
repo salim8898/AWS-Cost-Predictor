@@ -245,7 +245,7 @@ def filter_resource(facts):
     return tabulate_cost
 
 
-iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH"))
+iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH"), "tfplan.json")
 # print(iac_path)
 # terraform_command = ['terraform', 'show', '-json', 'tfplan.binary']
 
