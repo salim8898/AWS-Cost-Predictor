@@ -1,0 +1,18 @@
+# action.yaml
+name: 'Custom Github Action'
+description: 'A Github Action that takes an input and returns the square of the number'
+inputs:
+  iac_path:
+    description: 'Enter path of the terraform IAC folder'
+    required: true
+    default: "terraform/"
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+      shell: bash
