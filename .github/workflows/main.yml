@@ -12,9 +12,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Predict cost
-        uses: ./ # Uses an action in the root directory
-        # or use a released Github Action
-        # uses: repo url
+        uses: salim8898/AWS-Cost-Predictor@v1.0.0
         with:
           iac_path: IAC
         env:
