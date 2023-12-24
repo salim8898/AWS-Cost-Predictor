@@ -247,7 +247,7 @@ def filter_resource(facts):
 iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH") + "/" + "tfplan.json")
 print(iac_path)
 
-###
+### Remove extra lines from Json ##
 with open(iac_path, 'r') as file:
     lines = file.readlines()
 lines= lines[1:]
@@ -255,20 +255,20 @@ lines= lines[1:]
 with open(iac_path, 'w') as file:
     file.writelines(lines)
     
-with open(iac_path, 'r') as file:
-    file_content = file.read()
-print(file_content)
-###
-# facts, region = gather_facts(iac_path)
-# client = boto3.client("pricing", region_name="us-east-1")
-# # print(facts)
-# tabulate_cost = filter_resource(facts)
-# # print(tabulate_cost)
-# headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
-# alignments = ["left", "left", "right", "right"]
-# print("-" * 30)
-# print("Cost Predict Output:")
-# print("+------------------------------------+----------------+-------------+--------------+")
-# print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
-# print("+------------------------------------+----------------+-------------+--------------+")
+# with open(iac_path, 'r') as file:
+#     file_content = file.read()
+# print(file_content)
+
+facts, region = gather_facts(iac_path)
+client = boto3.client("pricing", region_name="us-east-1")
+# print(facts)
+tabulate_cost = filter_resource(facts)
+# print(tabulate_cost)
+headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
+alignments = ["left", "left", "right", "right"]
+print("-" * 30)
+print("Cost Predict Output:")
+print("+------------------------------------+----------------+-------------+--------------+")
+print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
+print("+------------------------------------+----------------+-------------+--------------+")
 
