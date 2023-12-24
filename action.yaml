@@ -36,7 +36,6 @@ runs:
     - name: Convert tfplan to JSON
       run: |
           terraform show -json tfplan.binary | tee tfplan.json > /dev/null
-          cat tfplan.json
       working-directory: ${{ inputs.iac_path }}
       shell: bash
     
@@ -44,11 +43,6 @@ runs:
       run: |
           echo "IAC_PATH=${{ inputs.iac_path }}" >> $GITHUB_ENV
       shell: bash
-
-    # - name: debug tfplan
-    #   run: |
-    #     cat "${{ inputs.iac_path }}/tfplan.json"
-    #   shell: bash
       
     - name: Run the AWS cost predict script
       run: python code/gather_facts.py
