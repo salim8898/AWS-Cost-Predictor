@@ -33,11 +33,11 @@ runs:
       working-directory: ${{ inputs.iac_path }}
       shell: bash
 
-    - name: Convert tfplan to JSON
-      run: |
-          terraform show -json tfplan.binary | tee tfplan.json > /dev/null
-      working-directory: ${{ inputs.iac_path }}
-      shell: bash
+    # - name: Convert tfplan to JSON
+    #   run: |
+    #       terraform show -json tfplan.binary | tee tfplan.json > /dev/null
+    #   working-directory: ${{ inputs.iac_path }}
+    #   shell: bash
     
     - name: Pass Inputs to Shell
       run: |
