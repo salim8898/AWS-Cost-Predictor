@@ -254,16 +254,23 @@ repo_dir = os.listdir(os.environ.get("GITHUB_WORKSPACE") + "/" + os.environ.get(
 print(git_dir)
 print(repo_dir)
 print(iac_path)
-facts, region = gather_facts(iac_path)
-client = boto3.client("pricing", region_name="us-east-1")
-# print(facts)
-tabulate_cost = filter_resource(facts)
-# print(tabulate_cost)
-headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
-alignments = ["left", "left", "right", "right"]
-print("-" * 30)
-print("Cost Predict Output:")
-print("+------------------------------------+----------------+-------------+--------------+")
-print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
-print("+------------------------------------+----------------+-------------+--------------+")
+
+
+with open(iac_path, "r") as file:
+    json_data = json.load(file)
+
+print(json_data)
+
+# facts, region = gather_facts(iac_path)
+# client = boto3.client("pricing", region_name="us-east-1")
+# # print(facts)
+# tabulate_cost = filter_resource(facts)
+# # print(tabulate_cost)
+# headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
+# alignments = ["left", "left", "right", "right"]
+# print("-" * 30)
+# print("Cost Predict Output:")
+# print("+------------------------------------+----------------+-------------+--------------+")
+# print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
+# print("+------------------------------------+----------------+-------------+--------------+")
 
