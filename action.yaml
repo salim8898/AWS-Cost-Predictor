@@ -35,8 +35,9 @@ runs:
 
     - name: Convert tfplan to JSON
       run: |
-        output=$(terraform show -json tfplan.binary)
-        echo "$output" > tfplan.json
+        exec > tfplan.json
+          terraform show -json tfplan.binary
+        exec >/dev/tty
       working-directory: ${{ inputs.iac_path }}
       shell: bash
     
