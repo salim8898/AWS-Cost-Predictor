@@ -245,7 +245,7 @@ def filter_resource(facts):
     return tabulate_cost
 
 
-# iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH"))
+iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH"))
 # print(iac_path)
 # terraform_command = ['terraform', 'show', '-json', 'tfplan.binary']
 
@@ -263,9 +263,10 @@ def filter_resource(facts):
 #     json_data = file.read()
 # print(json_data)
 
-# with open(iac_path + "/" + "tfplan.json", "r") as file:
-#     json.load(file)
+with open(iac_path + "/" + "tfplan.json", "r") as file:
+    content = json.load(file)
 
+print(content)
 # facts, region = gather_facts(iac_path)
 # client = boto3.client("pricing", region_name="us-east-1")
 # # print(facts)
