@@ -13,7 +13,7 @@ jobs:
         
       - name: debug tfplan
         run: |
-         cat "IAC/tfplan.json"
+         cat "${{ github.workspace }}/tfplan.json"
         shell: bash
         
       - name: Predict cost
@@ -25,3 +25,10 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        continue-on-error: true
+          
+      - name: debug tfplan
+        run: |
+         cat "${{ github.workspace }}/tfplan.json"
+        shell: bash
+        continue-on-error: true
