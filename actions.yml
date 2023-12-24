@@ -16,3 +16,7 @@ runs:
     - name: Install Dependencies
       run: pip install -r requirements.txt
       shell: bash
+    - name: Pass Inputs to Shell
+      run: |
+          echo "IAC_PATH=${{ inputs.iac_path }}" >> $GITHUB_ENV
+      shell: bash
