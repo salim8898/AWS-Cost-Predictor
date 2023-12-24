@@ -24,6 +24,6 @@ jobs:
           
       - name: debug tfplan
         run: |
-         cat "${{ github.workspace }}/tfplan.json"
+         cat "${{ github.workspace }}/IAC/tfplan.json"
         shell: bash
         continue-on-error: true
