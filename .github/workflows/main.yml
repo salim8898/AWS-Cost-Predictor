@@ -21,3 +21,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         # continue-on-error: true
+        
+      - name: debug CLI path
+        run: |
+          echo $GITHUB_WORKSPACE
+          ls -al $GITHUB_WORKSPACE/
+          cat $GITHUB_WORKSPACE/IAC/tfplan.json
+        shell: bash
+        continue-on-error: true
