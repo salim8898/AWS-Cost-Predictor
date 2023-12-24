@@ -1,6 +1,6 @@
 # AWS Cost Predictor 🚀
 
-![AWS Cost Predictor](link_to_your_image.png)
+![AWS Cost Predictor](https://github.com/salim8898/Images/blob/main/pngwing.com.png)
 
 Welcome to the AWS Cost Predictor! 😎 This GitHub Action is your crystal ball 🔮 for AWS deployment costs. It's like peeking into the future of your AWS expenses before hitting that deploy button. Cool, right? 🌟
 
