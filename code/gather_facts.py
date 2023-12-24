@@ -246,6 +246,7 @@ def filter_resource(facts):
 
 # iac_path = "IAC/tfplan.json"
 # iac_path = sys.argv[1]
+print(os.environ.get("GITHUB_WORKSPACE"))
 iac_path = os.environ.get("IAC_PATH") + "/" + "tfplan.json"
 # print(iac_path)
 facts, region = gather_facts(iac_path)
