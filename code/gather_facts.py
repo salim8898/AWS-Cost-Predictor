@@ -3,6 +3,7 @@ import boto3
 from tabulate import tabulate
 import sys
 import os
+import subprocess
 
 def gather_facts(iac_path):
     with open(iac_path, "r") as file:
@@ -249,7 +250,7 @@ print(iac_path)
 
 terraform_command = ['terraform', '--version']
 res = subprocess.run(terraform_command, capture_output=True, text=True, check=True)
-print(res)
+print(res.stdout)
 
 # facts, region = gather_facts(iac_path)
 # client = boto3.client("pricing", region_name="us-east-1")
