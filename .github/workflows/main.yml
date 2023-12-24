@@ -16,4 +16,4 @@ jobs:
         # or use a released Github Action
         # uses: repo url
         with:
-          iac_path: IAC/
+          iac_path: IAC/tfplan.json
