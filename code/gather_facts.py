@@ -259,10 +259,13 @@ try:
 except subprocess.CalledProcessError as e:
     print(f"Error running command: {e}")
 
-with open(iac_path + "/" + "tfplan.json", "r") as file:
-    json_data = file.read()
+# with open(iac_path + "/" + "tfplan.json", "r") as file:
+#     json_data = file.read()
+# print(json_data)
 
-print(json_data)
+with open(iac_path + "/" + "tfplan.json", "r") as file:
+    json.load(file)
+
 # facts, region = gather_facts(iac_path)
 # client = boto3.client("pricing", region_name="us-east-1")
 # # print(facts)
