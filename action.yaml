@@ -23,10 +23,6 @@ runs:
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v1
       
-    - name: Initialize Terraform
-      run: terraform init ${{ inputs.iac_path }}
-      shell: bash
-      
     - name: Generate tfplan
       run: terraform plan -out=tfplan.binary ${{ inputs.iac_path }}
       shell: bash
