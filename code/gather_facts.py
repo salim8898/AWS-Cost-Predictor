@@ -255,12 +255,10 @@ print(git_dir)
 print(repo_dir)
 print(iac_path)
 
-
-with open(iac_path, "r") as file:
-    json_data = json.loads(file)
-
-print(json_data)
-
+with open(iac_path, 'r') as file:
+    file_content = file.read()
+    print(f"File content: {file_content}")
+          
 # facts, region = gather_facts(iac_path)
 # client = boto3.client("pricing", region_name="us-east-1")
 # # print(facts)
