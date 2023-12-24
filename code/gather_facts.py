@@ -250,10 +250,10 @@ print(iac_path)
 ###
 with open(iac_path, 'r') as file:
     file_content = file.read()
-    # print(f"File content: {file_content}")
+    print(f"File content: {file_content}")
     
-    json_data = json.loads(file_content)
-    print(json_data) 
+    # json_data = json.loads(file_content)
+    # print(json_data) 
 
 ###
 facts, region = gather_facts(iac_path)
