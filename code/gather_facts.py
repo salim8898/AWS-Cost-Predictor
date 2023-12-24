@@ -247,11 +247,15 @@ def filter_resource(facts):
 
 iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH"))
 print(iac_path)
-terraform_command = f"terraform show -json tfplan.binary > tfplan.json"
+terraform_command = ['terraform', 'show', '-json', 'tfplan.binary']
+
 
 try:
-    res = subprocess.run(terraform_command, capture_output=True, text=True, check=True)
-    subprocess.run(terraform_command, cwd=iac_path, check=True, shell=True, capture_output=True)
+    result = subprocess.run(terraform_command, cwd=iac_path, check=True, shell=True, capture_output=True)
+    output = result.stdout.decode("utf8")
+    with open(iac_path + "/" + "tfplan.json", "w") as file:
+        file.write(output)
+    print(iac_path + "/" + "tfplan.json")
 except subprocess.CalledProcessError as e:
     print(f"Error running command: {e}")
 
