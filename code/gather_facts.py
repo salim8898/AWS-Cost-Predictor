@@ -257,7 +257,7 @@ print(iac_path)
 
 
 with open(iac_path, "r") as file:
-    json_data = json.load(file)
+    json_data = json.loads(file)
 
 print(json_data)
 
