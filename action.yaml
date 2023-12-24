@@ -20,6 +20,17 @@ runs:
       run: pip install -r requirements.txt
       shell: bash
       
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v1
+      
+    - name: Initialize Terraform
+      run: terraform init ${{ inputs.iac_path }}
+      shell: bash
+      
+    - name: Convert tfplan to JSON
+      run: terraform show -json tfplan.binary > ${{ inputs.iac_path }}/tfplan.json
+      shell: bash
+      
     - name: Pass Inputs to Shell
       run: |
           echo "IAC_PATH=${{ inputs.iac_path }}" >> $GITHUB_ENV
