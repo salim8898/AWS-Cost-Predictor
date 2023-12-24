@@ -22,7 +22,8 @@ runs:
       
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v1
-      terraform_wrapper: false
+      with:
+        terraform_wrapper: false
       
     - name: Initialize Terraform
       run: terraform init
