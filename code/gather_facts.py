@@ -6,7 +6,7 @@ import os
 
 def gather_facts(iac_path):
     with open(iac_path, "r") as file:
-        json_data = json.load(file)
+        json_data = json.loads(file)
 
     resources = json_data["planned_values"]["root_module"]["resources"]
     region = json_data["configuration"]["provider_config"]["aws"]["expressions"]["region"]["constant_value"]
