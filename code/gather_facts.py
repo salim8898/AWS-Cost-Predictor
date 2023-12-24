@@ -259,7 +259,7 @@ try:
 except subprocess.CalledProcessError as e:
     print(f"Error running command: {e}")
 
-with open((iac_path + "/" + "tfplan.json", "r" as file:
+with open(iac_path + "/" + "tfplan.json", "r") as file:
     json_data = file.read()
 
 print(json_data)
