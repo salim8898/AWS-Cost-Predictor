@@ -244,31 +244,18 @@ def filter_resource(facts):
     return tabulate_cost
 
 
-# iac_path = "IAC/tfplan.json"
-# iac_path = sys.argv[1]
-# print(os.environ.get("GITHUB_WORKSPACE"))
-# print(os.environ.get("IAC_PATH") + "/" + "tfplan.json")
 iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH") + "/" + "tfplan.json")
-git_dir = os.listdir(os.environ.get("GITHUB_WORKSPACE"))
-repo_dir = os.listdir(os.environ.get("GITHUB_WORKSPACE") + "/" + os.environ.get("IAC_PATH"))
-print(git_dir)
-print(repo_dir)
 print(iac_path)
-
-with open(iac_path, 'r') as file:
-    file_content = file.read()
-    print(f"File content: {file_content}")
-          
-# facts, region = gather_facts(iac_path)
-# client = boto3.client("pricing", region_name="us-east-1")
-# # print(facts)
-# tabulate_cost = filter_resource(facts)
-# # print(tabulate_cost)
-# headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
-# alignments = ["left", "left", "right", "right"]
-# print("-" * 30)
-# print("Cost Predict Output:")
-# print("+------------------------------------+----------------+-------------+--------------+")
-# print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
-# print("+------------------------------------+----------------+-------------+--------------+")
+facts, region = gather_facts(iac_path)
+client = boto3.client("pricing", region_name="us-east-1")
+# print(facts)
+tabulate_cost = filter_resource(facts)
+# print(tabulate_cost)
+headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
+alignments = ["left", "left", "right", "right"]
+print("-" * 30)
+print("Cost Predict Output:")
+print("+------------------------------------+----------------+-------------+--------------+")
+print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
+print("+------------------------------------+----------------+-------------+--------------+")
 
