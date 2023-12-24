@@ -37,7 +37,7 @@ runs:
       run: |
         exec > tfplan.json
           terraform show -json tfplan.binary
-        exec >/dev/tty
+        exec > stderr.msg
       working-directory: ${{ inputs.iac_path }}
       shell: bash
     
