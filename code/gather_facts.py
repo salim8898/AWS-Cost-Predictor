@@ -257,21 +257,22 @@ with open(iac_path, 'r') as file:
 
 with open('output_file.json', 'w') as output_file:
     output_file.write(file_content)
-    
+
+print("reading local file")
 with open('output_file.json', 'r') as file:
     output = file.read()
     print(output)
 ###
-facts, region = gather_facts(iac_path)
-client = boto3.client("pricing", region_name="us-east-1")
-# print(facts)
-tabulate_cost = filter_resource(facts)
-# print(tabulate_cost)
-headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
-alignments = ["left", "left", "right", "right"]
-print("-" * 30)
-print("Cost Predict Output:")
-print("+------------------------------------+----------------+-------------+--------------+")
-print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
-print("+------------------------------------+----------------+-------------+--------------+")
+# facts, region = gather_facts(iac_path)
+# client = boto3.client("pricing", region_name="us-east-1")
+# # print(facts)
+# tabulate_cost = filter_resource(facts)
+# # print(tabulate_cost)
+# headers = ["Service Name", "Instance Class", "Hourly Cost", "Monthly Cost"]
+# alignments = ["left", "left", "right", "right"]
+# print("-" * 30)
+# print("Cost Predict Output:")
+# print("+------------------------------------+----------------+-------------+--------------+")
+# print(tabulate(tabulate_cost, headers=headers, tablefmt="pretty", colalign=alignments))
+# print("+------------------------------------+----------------+-------------+--------------+")
 
