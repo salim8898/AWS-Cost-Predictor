@@ -255,9 +255,9 @@ lines= lines[1:]
 with open(iac_path, 'w') as file:
     file.writelines(lines)
     
-# with open(iac_path, 'r') as file:
-#     file_content = file.read()
-# print(file_content)
+with open(iac_path, 'r') as file:
+    file_content = file.read()
+print(file_content)
 
 facts, region = gather_facts(iac_path)
 client = boto3.client("pricing", region_name="us-east-1")
