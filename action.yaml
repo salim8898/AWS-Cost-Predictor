@@ -34,7 +34,11 @@ runs:
       shell: bash
 
     - name: Convert tfplan to JSON
-      run: terraform show -json tfplan.binary > tfplan.json
+      run: |
+        terraform show -json tfplan.binary > tfplan.json
+        ls -al
+        pwd
+        env
       working-directory: ${{ inputs.iac_path }}
       shell: bash
       
