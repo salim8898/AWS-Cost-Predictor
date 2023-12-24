@@ -1,14 +1,16 @@
-name: Test Action
+name: AWS Cost Predict
 on:
   push:
     branches: [ "main" ]
+    
 jobs:
-  get-num-square:
+  AWS Cost Predict:
     runs-on: ubuntu-latest
-    name: Return's the number square
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
       - name: Predict cost
         uses: ./ # Uses an action in the root directory
         # or use a released Github Action
