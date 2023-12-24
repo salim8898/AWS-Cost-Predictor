@@ -1,5 +1,7 @@
 name: Test Action
-on: [push]
+on:
+  push:
+    branches: [ "main" ]
 jobs:
   get-num-square:
     runs-on: ubuntu-latest
