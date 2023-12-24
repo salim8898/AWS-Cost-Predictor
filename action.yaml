@@ -45,6 +45,7 @@ runs:
         ls -al
         cat ${{ inputs.iac_path }}/tfplan.json
       working-directory: ${{ inputs.iac_path }}
+      shell: bash
       
     - name: Pass Inputs to Shell
       run: |
