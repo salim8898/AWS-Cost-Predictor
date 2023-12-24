@@ -1,10 +1,10 @@
-name: AWS Cost Predict
+name: AWSCostPredict
 on:
   push:
     branches: [ "main" ]
     
 jobs:
-  AWS Cost Predict:
+  AWSCostPredict:
     runs-on: ubuntu-latest
 
     steps:
