@@ -245,12 +245,16 @@ def filter_resource(facts):
     return tabulate_cost
 
 
-iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH") + "/" + "tfplan.json")
+iac_path = os.path.join(os.environ.get("GITHUB_WORKSPACE"), os.environ.get("IAC_PATH"))
 print(iac_path)
+terraform_command = f"terraform show -json tfplan.binary > tfplan.json"
 
-terraform_command = ['terraform', '--version']
-res = subprocess.run(terraform_command, capture_output=True, text=True, check=True)
-print(res.stdout)
+try:
+    res = subprocess.run(terraform_command, capture_output=True, text=True, check=True)
+    subprocess.run(terraform_command, cwd=iac_path, check=True, shell=True, capture_output=True)
+except subprocess.CalledProcessError as e:
+    print(f"Error running command: {e}")
+
 
 # facts, region = gather_facts(iac_path)
 # client = boto3.client("pricing", region_name="us-east-1")
