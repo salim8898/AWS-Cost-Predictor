@@ -3,40 +3,46 @@ import boto3
 from tabulate import tabulate
 import sys
 import os
-import subprocess
 
 def gather_facts(iac_path):
     with open(iac_path, "r") as file:
         json_data = json.load(file)
-
-    resources = json_data["planned_values"]["root_module"]["resources"]
-    region = json_data["configuration"]["provider_config"]["aws"]["expressions"]["region"]["constant_value"]
+    resources = json_data["resource_changes"]
+    try:
+        region = json_data["configuration"]["provider_config"]["aws"]["expressions"]["region"]["constant_value"]
+    except KeyError as e:
+        region_var = json_data["configuration"]["provider_config"]["aws"]["expressions"]["region"]["references"][0].split('.')[1]
+        region = json_data["variables"]["aws_region"]["value"]
+        
     list_facts = []
 
     for resource in range(len(resources)):
-        facts = {}  
+        facts = {}
         resource_type = resources[resource]["type"]
         if resource_type == "aws_instance":
-            facts[resource_type] = {"class": resources[resource]["values"]["instance_type"]}
+            facts[resource_type] = {"class": resources[resource]["change"]["after"]["instance_type"]}
             list_facts.append(facts)
 
         if resource_type == "aws_db_instance":
-            facts[resource_type] = {"class": resources[resource]["values"]["instance_class"], "engine": resources[resource]["values"]["engine"]}
+            facts[resource_type] = {"class": resources[resource]["change"]["after"]["instance_class"], "engine": resources[resource]["change"]["after"]["engine"]}
             list_facts.append(facts)
 
         if resource_type == "aws_launch_configuration":
             resource_name = resources[resource]["name"]
+            # print(resource_name)
             for asg_resource in resources:
+                # print(asg_resource["address"])
                 if resource_name in asg_resource["address"] and asg_resource["type"] == "aws_autoscaling_group":
-                    desired_capacity = asg_resource["values"]["desired_capacity"]
+                    desired_capacity = asg_resource["change"]["after"]["desired_capacity"]
+                    # print(desired_capacity)
             while desired_capacity > 0 :
-                facts[resource_type] = {"class": resources[resource]["values"]["instance_type"]}
+                facts[resource_type] = {"class": resources[resource]["change"]["after"]["instance_type"]}
                 list_facts.append(facts)
                 desired_capacity -= 1
 
         if resource_type == "aws_ebs_volume":
-            ebs_size = resources[resource]["values"].get("size")
-            ebs_type = resources[resource]["values"].get("type")
+            ebs_size = resources[resource]["change"]["after"].get("size")
+            ebs_type = resources[resource]["change"]["after"].get("type")
             if ebs_type is not None:
                 facts[resource_type] = {"class": ebs_type, "size": ebs_size}
                 list_facts.append(facts)
@@ -44,12 +50,12 @@ def gather_facts(iac_path):
                 facts[resource_type] = {"class": "gp2", "size": ebs_size}
                 list_facts.append(facts)
             
-        # if resource_type == "aws_ecs_cluster":
-        #     facts[resource_type] = {"class": resources[resource]["values"]["name"]}
-        #     list_facts.append(facts)
+        # # if resource_type == "aws_ecs_cluster":
+        # #     facts[resource_type] = {"class": resources[resource]["values"]["name"]}
+        # #     list_facts.append(facts)
 
         if resource_type == "aws_eks_cluster":
-            facts[resource_type] = {"class": resources[resource]["values"]["name"]}
+            facts[resource_type] = {"class": resources[resource]["name"]}
             list_facts.append(facts)
 
     return list_facts, region
