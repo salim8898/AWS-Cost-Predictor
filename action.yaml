@@ -20,10 +20,6 @@ runs:
      run: | 
        pip install boto3 tabulate
      shell: bash
-     
-    # - name: Install Dependencies
-    #   run: pip install -r requirements.txt
-    #   shell: bash
       
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v1
