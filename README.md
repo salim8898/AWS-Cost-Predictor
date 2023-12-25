@@ -73,3 +73,25 @@ jobs:
         # continue-on-error: true
 
 ```
+### Output Report Sample
+
+```
+------------------------------
+Cost Predict Output:
++------------------------------------+----------------+-------------+--------------+
++------------------------------------+----------------+-------------+--------------+
+| Service Name                       | Instance Class | Hourly Cost | Monthly Cost |
++------------------------------------+----------------+-------------+--------------+
+| AmazonRDS/aws_db_instance          | db.t2.micro    |   0.017 USD |    12.41 USD |
+| AmazonEC2/aws_ebs_volume           | gp3/50 GB      |    0.08 USD |     4.00 USD |
+| AmazonEC2/aws_ebs_volume           | gp2/10 GB      |     0.1 USD |     1.00 USD |
+| AmazonEKS/aws_eks_cluster          | my-eks-cluster |     0.1 USD |    73.01 USD |
+| AmazonEC2/aws_instance             | m5.large       |   0.096 USD |    70.09 USD |
+| AmazonEC2/aws_instance             | t2.micro       |  0.0116 USD |     8.47 USD |
+| AmazonEC2/aws_launch_configuration | m7g.large      |  0.0867 USD |    63.30 USD |
+| AmazonEC2/aws_launch_configuration | m7g.large      |  0.0867 USD |    63.30 USD |
+| ------Total Cost------             |                |    0.58 USD |   295.58 USD |
++------------------------------------+----------------+-------------+--------------+
++------------------------------------+----------------+-------------+--------------+
+
+```
