@@ -46,10 +46,16 @@ runs:
           echo "IAC_PATH=${{ inputs.iac_path }}" >> $GITHUB_ENV
       shell: bash
       
-    - name: Run the AWS cost predict script
-      run: python code/gather_facts.py
-      shell: bash
+    - name: Download the script
+        run: curl -o $PWD/gather_facts.py https://raw.githubusercontent.com/salim8898/AWS-Cost-Predictor/main/code/gather_facts.py
+        
+    - name: Give script permissions
+        run: chmod +x $PWD/gather_facts.py
 
+    - name: Run the AWS cost predict script
+      run: python gather_facts.py
+      shell: bash
+      
 branding:
   icon: 'activity'
   color: 'green'
